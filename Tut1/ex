@@ -1,0 +1,6 @@
+echo "Emmanuelle Aguilar Sánchez"
+echo "2016009338"
+date
+whoami
+uname -a
+ps -ux
