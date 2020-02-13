@@ -13,6 +13,8 @@ Ejercicios Prácticos
 (echo "Emmanuelle Aguilar Sánchez"; echo "2016009338") > Ejercicio1.txt
 (date; whoami; uname -a; ps -ux) >> Ejercicio1.txt
 
+// copiar y pergar lo que tiene Ejercicio1.txt
+
 2- Comandos
 mkdir Ej2
 md5sum Ejercicio1.txt > Ej2/Ejercicio2.txt
@@ -42,4 +44,5 @@ echo "Cantidad de veces que aparece la palabra Zeus:" && (cat laodisea00homeuoft
 5- Comandos
 echo "idVendor:idProduct" && (lsusb | grep -oh '[a-zA-Z0-9]\{4\}:[a-zA-Z0-9]\{4\}')
 echo "idVendor idProduct Name" && (lsusb | cut -b 24- | sed 's/:/ /g')
+dmesg | grep idVendor
 
