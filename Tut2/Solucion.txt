@@ -1,0 +1,12 @@
+--Biblioteca Estática--
+gcc -c my_math.c
+ar rv libmy_math.a my_math.o
+ranlib libmy_math.a
+gcc -I. -o calcex calculator.c libmy_math.a -lm
+gcc -L. -I. -o calcex calculator.c -lmy_math -lm
+
+--Biblioteca Dinámica--
+gcc -c my_math.c
+ld -o libmy_math.so my_math.o -shared
+gcc -o dynamic_ex calculator.c -I. -L. -Bdynamic -lmy_math -lm
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ema0898/Programas/Embebidos/Tut2
