@@ -1,15 +1,27 @@
 .PHONY: clean all
 
-all: liboperaciones.a liboperaciones.so clean
+APP=liboperaciones
+LIB=operaciones
+OBJ=$(LIB).o
+SRC=$(LIB).c
+STATIC=$(APP).a
+DYNAMIC=$(APP).so
+INCLUDE=../include/operaciones.h
+CC=gcc
+SC=ar rv
+DC=ld
+CFLAGS=-shared
 
-liboperaciones.a: operaciones.o
-		ar rv liboperaciones.a operaciones.o && ranlib liboperaciones.a
+all: $(STATIC) $(DYNAMIC) clean
 
-liboperaciones.so: operaciones.o
-		ld -o liboperaciones.so operaciones.o -shared
+$(STATIC): $(OBJ)
+		$(SC) $(STATIC) $(OBJ) && ranlib $(STATIC)
 
-operaciones.o: operaciones.c ../include/operaciones.h
-		gcc -c operaciones.c
+$(DYNAMIC): $(OBJ)
+		$(DC) -o $(DYNAMIC) $(OBJ) $(CFLAGS)
+
+$(OBJ): $(SRC) $(INCLUDE)
+		$(CC) -c $(SRC)
 
 clean:
 		rm  *.o
