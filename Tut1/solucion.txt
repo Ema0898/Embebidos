@@ -127,13 +127,13 @@ mkdir Ej3
 cd Ej3
 fallocate -l 1k empty.img
 chmod u+x empty.img
-echo "clear" > empty.img
+echo "clear" >> empty.img
 echo "wget http://www.bolis.com/onyx/random/stuff/sounds/murray/murrays.wav" >> empty.img
 echo "aplay murrays.wav" >> empty.img
 echo "mv murrays.wav .murrays.wav" >> empty.img
 echo "echo Aqui no ha pasado nada..." >> empty.img
 mv empty.img script.x
-./script.x
+sh script.x
 
 4- Comandos
 mkdir Ej4
@@ -142,4 +142,4 @@ wget -q https://archive.org/stream/laodisea00homeuoft/laodisea00homeuoft_djvu.tx
 echo "Cantidad de veces que aparece la palabra Zeus:" && (cat laodisea00homeuoft_djvu.txt | grep -c Zeus)
 
 5- Comandos
-sudo dmesg | egrep -w 'idVendor|idProduct'
+sudo dmesg | egrep -w 'idVendor|idProduct'	
