@@ -1,13 +1,19 @@
 .PHONY: all path
 
-all: calculadora_e calculadora_d path
+STATIC=calculadora_e
+DYNAMIC=calculadora_d
+CC=gcc
+ROUTE=../bin/
+STATICFLAGS=../lib/liboperaciones.a -I../include -lm
+STATICROUTE=$(ROUTE)calculadora_e
+DYNAMICFLAGS=-Bdynamic -L../lib -I../include -loperaciones -lm
+DYNAMICROUTE=$(ROUTE)calculadora_d
+SRC=calculadora.c
 
-calculadora_e: 
-		#gcc -L../lib -I../include -o ../bin/calculadora_e calculadora.c -loperaciones -lm
-		gcc -o ../bin/calculadora_e calculadora.c ../lib/liboperaciones.a -I../include -lm
+all: $(STATIC) $(DYNAMIC)
 
-calculadora_d:
-		gcc -o ../bin/calculadora_d calculadora.c -Bdynamic -L../lib -I../include -loperaciones -lm
+$(STATIC): 
+		$(CC) -o $(STATICROUTE) $(SRC) $(STATICFLAGS)
 
-path:
-		export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ema0898/Programas/Embebidos/Tut3/lib
+$(DYNAMIC):
+		$(CC) -o $(DYNAMICROUTE) $(SRC) $(DYNAMICFLAGS)

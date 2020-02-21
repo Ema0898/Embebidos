@@ -8,17 +8,18 @@ STATIC=$(APP).a
 DYNAMIC=$(APP).so
 INCLUDE=../include/operaciones.h
 CC=gcc
-SC=ar rv
-DC=ld
+MAKELIB=ar rv
+LD=ld
+RANLIB=ranlib
 CFLAGS=-shared
 
 all: $(STATIC) $(DYNAMIC) clean
 
 $(STATIC): $(OBJ)
-		$(SC) $(STATIC) $(OBJ) && ranlib $(STATIC)
+		$(MAKELIB) $(STATIC) $(OBJ) && $(RANLIB) $(STATIC)
 
 $(DYNAMIC): $(OBJ)
-		$(DC) -o $(DYNAMIC) $(OBJ) $(CFLAGS)
+		$(LD) -o $(DYNAMIC) $(OBJ) $(CFLAGS)
 
 $(OBJ): $(SRC) $(INCLUDE)
 		$(CC) -c $(SRC)
