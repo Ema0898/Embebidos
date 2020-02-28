@@ -1,4 +1,4 @@
-.PHONY: all path
+.PHONY: all
 
 STATIC=calculadora_e
 DYNAMIC=calculadora_d
