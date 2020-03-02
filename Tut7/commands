@@ -1,0 +1,6 @@
+cd lib
+$CC -c gpio.c -fPIC
+$LD -o libgpio.so gpio.o -shared
+cd ..
+cd src
+$CC -o ../bin/piCodeDynamic raspberrypi.c -I../include ../lib/libgpio.so -Bdynamic
